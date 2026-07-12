@@ -93,4 +93,20 @@ def add_document_to_rag(file_path:str,thread_id:str):
 
 
 def retrieve_from_rag(query: str, thread_id:str, k:int=4)->str:
+    docs = vectorstore.similarity_search(
+        query,
+        k=k,
+        filter={"thread_id":thread_id}
+    )
+
+    if not docs:
+        return "No relevant uploaded document content found."
     
+    results=[]
+    for i, doc in enumerate(docs,start=1):
+        source = doc.metadata.get("source","uploaded document")
+        results.append(
+            f"[Source {i}: {source}]\n{doc.page_content}"
+        )
+    return "\n\n".join(results)
+

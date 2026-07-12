@@ -16,14 +16,17 @@ from langchain_core.messages import SystemMessage
 from langgraph.graph import StateGraph, START, MessagesState
 from langgraph.prebuilt import ToolNode, tools_condition
 from langgraph.checkpoint.sqlite import SqliteSaver
-from Backend.tools import tools
+from tools import tools
+
+from tools import tools
 
 
 Path("data").mkdir(exist_ok=True)
 
-DEFAULT_MODEL = os.getenv("GEMIN_MODEL", "gemini-2.5-pro")
+DEFAULT_MODEL = os.getenv("GEMINI_MODEL", os.getenv("GOOGLE_MODEL", "gemini-2.5-flash"))
 
 ALLOWED_MODELS = {
+    "gemini-2.5-pro",
     "gemini-2.5-flash",
     "gemini-2.5-flash-lite",
     "gemini-2.0-flash",
@@ -113,3 +116,20 @@ def build_agent(model_name:str):
 
     return workflow.compile(checkpointer=checkpointer)
 
+
+
+_AGENT_CACHE = {}
+
+def get_agent(model_name:str | None=None):
+    """
+    Return cached LangGraph agent for selected model.
+    If not created yet, create it once and reuse it.
+    """
+
+    selected_model = normalize_model_name(model_name)
+
+    if selected_model not in _AGENT_CACHE:
+        _AGENT_CACHE[selected_model] = build_agent(selected_model)
+
+    return _AGENT_CACHE[selected_model]
+    

@@ -3,8 +3,9 @@ from dotenv import load_dotenv
 from langchain_core.tools import tool
 from langchain_tavily import TavilySearch
 
-from Backend.database import save_memory, search_memory
+from database import save_memory, search_memory
 
+from rag import retrieve_from_rag
 
 load_dotenv()
 
@@ -43,6 +44,20 @@ def calculator(expression:str)->str:
         return f"Calculation error:{str(e)}"
     
 
+@tool
+def search_uploaded_documents(query:str)->str:
+    """
+    Search uploaded documents for relevant information.
+    Use this when the user asks about uploaded PDFs, DOCX, TXT, notes, files, or documents.
+    """
+
+    return retrieve_from_rag(
+        query=query,
+        thread_id=CURRENT_THREAD_ID
+    )
+
+
+
 
 @tool
 def remember_this(memory:str)->str:
@@ -67,4 +82,14 @@ def recall_memory(query:str)->str:
         query=query
     )
 
+
+
+
+tools = [
+    calculator,
+    search_uploaded_documents,
+    remember_this,
+    recall_memory,
+    web_search
+]
 
