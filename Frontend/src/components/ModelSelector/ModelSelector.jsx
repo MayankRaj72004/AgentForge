@@ -17,11 +17,11 @@ export default function ModelSelector() {
       onChange={(e) => changeModel(e.target.value)}
       title="Select model"
     >
-      <option value="gemini-2.5-flash">gemini-2.5-flash</option>
-      <option value="gemini-2.5-pro">gemini-2.5-pro</option>
-      <option value="gemini-2.5-flash-lite">gemini-2.5-flash-lite</option>
-      <option value="gemini-1.5-flash">gemini-1.5-flash</option>
-      <option value="gemini-1.5-pro">gemini-1.5-pro</option>
+      <option value="llama-3.3-70b-versatile">llama-3.3</option>
+      <option value="llama-3.1-8b-instant">llama-3.1</option>
+      <option value="openai/gpt-oss-120b">openai/gpt-oss-120b</option>
+      <option value="openai/gpt-oss-20b">openai/gpt-oss-20b</option>
+      <option value="deepseek-r1-distill-llama-70b">deepseek-r1</option>
     </select>
   );
 }

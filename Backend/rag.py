@@ -12,7 +12,8 @@ os.environ["REQUESTS_CA_BUNDLE"] = certifi.where()
 
 
 from langchain_chroma import Chroma
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
+# from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_core.documents import Document
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
@@ -25,9 +26,13 @@ Path("chroma_db").mkdir(exist_ok=True)
 
 
 # Embeddings model
-embeddings = GoogleGenerativeAIEmbeddings(
-    model="gemini-embedding-001"
+# embeddings = GoogleGenerativeAIEmbeddings(
+#     model="gemini-embedding-001"
+# )
+embeddings = HuggingFaceEmbeddings(
+    model_name="sentence-transformers/all-MiniLM-L6-v2"
 )
+
 
 vectorstore = Chroma(
     collection_name = "agentic_chatbot_docs",
