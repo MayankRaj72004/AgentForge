@@ -12,7 +12,7 @@ const ChatContext = createContext(null);
 export function ChatProvider({ children }) {
   // Persisted state
   const [threadId, setThreadId] = useLocalStorage("thread_id", crypto.randomUUID());
-  const [model, setModel] = useLocalStorage("selected_model", "gemini-2.5-flash");
+  const [model, setModel] = useLocalStorage("selected_model", "llama-3.3-70b-versatile");
 
   // Application state
   const [messages, setMessages] = useState([]);

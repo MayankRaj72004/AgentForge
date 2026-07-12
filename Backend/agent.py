@@ -18,8 +18,6 @@ from langgraph.prebuilt import ToolNode, tools_condition
 from langgraph.checkpoint.sqlite import SqliteSaver
 from tools import tools
 
-from tools import tools
-
 
 Path("data").mkdir(exist_ok=True)
 
