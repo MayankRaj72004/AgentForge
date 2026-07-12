@@ -1,0 +1,44 @@
+.sidebar {
+  width: 270px;
+  background: #171717;
+  border-right: 1px solid #2f2f2f;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+}
+
+.brand {
+  font-size: 18px;
+  font-weight: 700;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.new-chat {
+  border: 1px solid #3f3f3f;
+  background: transparent;
+  color: #ececec;
+  padding: 12px;
+  border-radius: 10px;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.new-chat:hover {
+  background: #2a2a2a;
+}
+
+.history-title {
+  color: #999;
+  font-size: 13px;
+  margin: 10px 0;
+  padding-left: 4px;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+}

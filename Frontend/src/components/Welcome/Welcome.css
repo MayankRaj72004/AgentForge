@@ -1,0 +1,16 @@
+.welcome {
+  max-width: 760px;
+  margin: 110px auto 0;
+  text-align: center;
+}
+
+.welcome h1 {
+  font-size: 34px;
+  margin-bottom: 10px;
+  font-weight: 650;
+}
+
+.welcome p {
+  color: #aaa;
+  font-size: 16px;
+}

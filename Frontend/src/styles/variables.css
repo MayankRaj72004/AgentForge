@@ -1,0 +1,49 @@
+/* Design tokens extracted from the original HTML */
+:root {
+  /* Backgrounds */
+  --bg-primary: #212121;
+  --bg-sidebar: #171717;
+  --bg-input: #303030;
+  --bg-hover: #2a2a2a;
+  --bg-active: #303030;
+  --bg-select: #262626;
+
+  /* Borders */
+  --border-color: #2f2f2f;
+  --border-input: #444;
+  --border-card: #3a3a3a;
+  --border-button: #3f3f3f;
+
+  /* Text */
+  --text-primary: #ececec;
+  --text-secondary: #aaa;
+  --text-muted: #999;
+  --text-history: #cfcfcf;
+
+  /* Accent colors */
+  --accent-user: #5a4fcf;
+  --accent-bot: #10a37f;
+  --accent-error: #ef4444;
+
+  /* Sizing */
+  --sidebar-width: 270px;
+  --topbar-height: 56px;
+  --input-max-width: 820px;
+  --message-max-width: 820px;
+
+  /* Border radius */
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-xl: 14px;
+  --radius-pill: 18px;
+  --radius-circle: 50%;
+
+  /* Font sizes */
+  --font-xs: 12px;
+  --font-sm: 13px;
+  --font-base: 14px;
+  --font-md: 16px;
+  --font-lg: 18px;
+  --font-xl: 34px;
+}

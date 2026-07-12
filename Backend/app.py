@@ -14,7 +14,6 @@ from pathlib import Path
 import uvicorn
 from fastapi import FastAPI, Request, UploadFile, File, Form
 from fastapi.responses import StreamingResponse, JSONResponse
-from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
@@ -47,18 +46,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-Path("templates").mkdir(exist_ok=True)
-templates = Jinja2Templates(directory="templates")
-
 Path("uploads").mkdir(exist_ok=True)
 Path("data").mkdir(exist_ok=True)
 
 
 init_db()
-
-
-# The home route is served dynamically by StaticFiles at the bottom
-
 
 
 @app.get("/conversations")
@@ -94,6 +86,15 @@ async def get_messages(thread_id: str):
             for item in items
         ]
     }
+
+
+@app.get("/history/{thread_id}")
+async def get_history(thread_id: str):
+    """
+    Alias for /conversations/{thread_id}/messages.
+    The original HTML frontend uses this endpoint.
+    """
+    return await get_messages(thread_id)
 
 
 @app.post("/upload")
@@ -256,11 +257,10 @@ if frontend_dist.exists():
     app.mount("/", StaticFiles(directory=str(frontend_dist), html=True), name="frontend")
 else:
     @app.get("/")
-    async def home(request: Request):
-        return templates.TemplateResponse(
-            request=request,
-            name="index.html",
-            context={}
+    async def home():
+        return JSONResponse(
+            {"message": "Frontend not built. Run 'npm run build' in the Frontend/ directory."},
+            status_code=200
         )
 
 

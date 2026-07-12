@@ -1,0 +1,17 @@
+.topbar {
+  height: 56px;
+  border-bottom: 1px solid #2f2f2f;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  font-size: 16px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.topbar .status {
+  font-size: 13px;
+  color: #aaa;
+  font-weight: 400;
+}

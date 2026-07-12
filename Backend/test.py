@@ -5,7 +5,7 @@ from database import init_db
 
 init_db()
 
-agent = get_agent("gemini-2.5-flash")
+agent = get_agent("gemini-2.0-flash")
 
 
 config = {
